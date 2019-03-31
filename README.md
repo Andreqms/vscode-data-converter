@@ -1,18 +1,20 @@
-# vscode-data-converter
+# Data converter
 
-![Screenshot](https://raw.githubusercontent.com/attilathedud/vscode-data-converter/master/imgs/data-converter.gif "Action")
+*This is a modified version of attilathedud's Data Converter (https://marketplace.visualstudio.com/items?itemName=attilathedud.data-converter)*
 
-[Download here.](https://marketplace.visualstudio.com/items?itemName=attilathedud.data-converter)
+![Screenshot](https://raw.githubusercontent.com/andreqms/vscode-data-converter/master/imgs/data-converter.png "Action")
 
-Data Converter is a VSCode extension that allows you to quickly convert sections of data from one form to another. It can be used to assist in debugging error logs or any other number-heavy process.
+[Download here.](https://marketplace.visualstudio.com/items?itemName=andreqms.c0nverter)
+
+c0nverter is a VSCode extension that allows you to quickly convert sections of data from one form to another. It can be used to assist in debugging error logs or any other number-heavy process.
 
 ## Usage
-Select text and press `Alt+D` to bring up the options menu.
+Select text and press `Alt+C` to bring up the options menu.
 
 ## Features
+* ASCII Encoding/Decoding.
 * Decimal, Hex, and Binary conversions of individual numbers and whole documents.
 * URL Escaping/Unescaping.
-* Unicode Encoding/Decoding.
 
 ## Configuration Options
 * `converter.prependDataWithIdentifier`: Add 0x and 0b in front of hex and binary numbers when converted.

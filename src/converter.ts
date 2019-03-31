@@ -42,20 +42,37 @@ export module converter {
         return identifier_prefix + negative_prefix + representation.toString(new_base);
     }
 
-    export function unicode_to_hex(text: string) {
+    export function ascii_to_hex(text: string) {
         var converted_text: string = '';
 
         for (var i = 0; i < text.length; i++) {
-            converted_text += "\\u" + text.codePointAt(i).toString(16);
+            if(text.charCodeAt(i).toString(16).length == 1){
+                converted_text += "0" + text.charCodeAt(i).toString(16).toUpperCase();
+            }
+
+            else
+                converted_text += text.charCodeAt(i).toString(16).toUpperCase();
         }
 
         return converted_text;
     }
 
-    export function hex_to_unicode(text: string) {
+    export function hex_to_ascii(text: string) {
         var converted_text: string = '';
+        let unicode_elements: string[] = [];
 
-        let unicode_elements: string[] = text.split('\\u');
+        if(text.charAt(text.length - 1) == '\r'){
+            text = text.substr(0, text.length - 1);
+        }
+
+        if(text.length % 2 == 1){
+            return;
+        }
+        
+        var i:number = text.length;    
+        for(i = 0; i < text.length; i = i + 2){
+            unicode_elements.push(text.charAt(i) + text.charAt(i+1));
+        }
 
         unicode_elements.forEach(element => {
             if (element.length == 0) {

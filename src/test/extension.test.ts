@@ -1,6 +1,18 @@
 import * as assert from 'assert';
 import { converter } from "../converter";
 
+suite("ASCII and Hex Tests", () => {
+    test("Empty input", () => {
+        assert.equal(converter.ascii_to_hex(''), '');
+        assert.equal(converter.hex_to_ascii(''), '');
+    });
+
+    test("Basic string", () => {
+        assert.equal(converter.ascii_to_hex('abc'), '616263');
+        assert.equal(converter.hex_to_ascii('616263'), 'abc');
+    });
+});
+
 suite("Convert Text To Base Tests", () => {
     test("Empty input", () => {
         assert.equal(converter.convert_text_to_base('', 10, 2), '');
@@ -55,17 +67,5 @@ suite("Convert Text To Base Tests", () => {
     test("Add identifier", () => {
         assert.equal(converter.convert_text_to_base('1', 10, 16, true), '0x1');
         assert.equal(converter.convert_text_to_base('1', 10, 2, true), '0b1');
-    });
-});
-
-suite("Unicode and Hex Tests", () => {
-    test("Empty input", () => {
-        assert.equal(converter.unicode_to_hex(''), '');
-        assert.equal(converter.hex_to_unicode(''), '');
-    });
-
-    test("Basic string", () => {
-        assert.equal(converter.unicode_to_hex('abc'), '\\u61\\u62\\u63');
-        assert.equal(converter.hex_to_unicode('\\u61\\u62\\u63'), 'abc');
     });
 });

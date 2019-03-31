@@ -1,9 +1,9 @@
 {
-    "name": "data-converter",
-    "displayName": "Data Converter",
+    "name": "c0nverter",
+    "displayName": "c0nverter",
     "description": "Convert data to different formats",
-    "version": "1.0.1",
-    "publisher": "attilathedud",
+    "version": "1.0.0",
+    "publisher": "andreqms",
     "icon": "imgs/icon.png",
     "engines": {
         "vscode": "^1.17.0"
@@ -12,26 +12,26 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.dataConversion"
+        "onCommand:extension.c0nverter"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.dataConversion",
+                "command": "extension.c0nverter",
                 "title": "Data Conversion",
                 "description": "Convert data for selections"
             }
         ],
         "keybindings": [
             {
-                "command": "extension.dataConversion",
-                "key": "Alt+D"
+                "command": "extension.c0nverter",
+                "key": "Alt+C"
             }
         ],
         "configuration": {
             "type": "object",
-            "title": "Data Converter configuration",
+            "title": "c0nveter configuration",
             "properties": {
                 "converter.prependDataWithIdentifier": {
                     "type": "boolean",
@@ -61,7 +61,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/attilathedud/vscode-data-converter.git"
+        "url": "https://github.com/andreqms/vscode-data-converter.git"
     },
-    "homepage": "https://github.com/Microsoft/vscode-data-converter/blob/master/README.md"
+    "homepage": "https://github.com/andreqms/vscode-data-converter.git"
 }
