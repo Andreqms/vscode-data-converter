@@ -2,7 +2,7 @@
     "name": "c0nverter",
     "displayName": "c0nverter",
     "description": "Convert data to different formats",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "publisher": "andreqms",
     "icon": "imgs/icon.png",
     "engines": {
@@ -12,20 +12,42 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.c0nverter"
+        "onCommand:extension.c0nverterMenu"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.c0nverter",
+                "command": "extension.c0nverterMenu",
                 "title": "Data Conversion",
                 "description": "Convert data for selections"
+            },
+            {
+                "command": "extension.asciiConv",
+                "title": "ASCII -> HEX",
+                "description": "Convert ASCII to hex"
+            },
+            {
+                "command": "extension.hexConv",
+                "title": "HEX -> ASCII",
+                "description": "Convert hex to ASCII"
             }
         ],
+        "menus": {
+            "editor/context": [
+              {
+                "command": "extension.asciiConv",
+                "group": "converter"
+              },
+              {
+                "command": "extension.hexConv",
+                "group": "converter"
+              }
+            ]
+          },
         "keybindings": [
             {
-                "command": "extension.c0nverter",
+                "command": "extension.c0nverterMenu",
                 "key": "Alt+C"
             }
         ],
@@ -64,4 +86,5 @@
         "url": "https://github.com/andreqms/vscode-data-converter.git"
     },
     "homepage": "https://github.com/andreqms/vscode-data-converter.git"
+    
 }

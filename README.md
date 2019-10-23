@@ -9,7 +9,7 @@
 c0nverter is a VSCode extension that allows you to quickly convert sections of data from one form to another. It can be used to assist in debugging error logs or any other number-heavy process.
 
 ## Usage
-Select text and press `Alt+C` to bring up the options menu.
+Select text and press `Alt+C` to bring up the options menu or use the context menu for ASCII and hex conversion.
 
 ## Features
 * ASCII Encoding/Decoding.

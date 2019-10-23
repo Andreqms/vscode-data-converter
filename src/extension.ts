@@ -5,7 +5,7 @@ import * as vscode from "vscode";
 import { converter } from "./converter";
 
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('extension.c0nverter', () => {
+    let extensionMenu = vscode.commands.registerCommand('extension.c0nverterMenu', () => {
         if (!vscode.window.activeTextEditor) {
             vscode.window.showInformationMessage('No text selected');
             return;
@@ -133,5 +133,76 @@ export function activate(context: vscode.ExtensionContext) {
         });
     });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(extensionMenu);
+
+    let disposable1 = vscode.commands.registerCommand('extension.asciiConv', () => {
+        if (!vscode.window.activeTextEditor) {
+            vscode.window.showInformationMessage('No text selected');
+            return;
+        }
+
+        const editor = vscode.window.activeTextEditor;
+
+        editor.edit(function (edit) {
+            editor.selections.forEach(element => {
+                let selected_text: string = editor.document.getText(new vscode.Range(element.start, element.end));
+
+                if (selected_text.length == 0) {
+                    return;
+                }
+
+                let should_prepend_with_identifier: boolean =
+                    vscode.workspace.getConfiguration('converter').get('prependDataWithIdentifier');
+
+                let spaces_indicate_delimiter: boolean =
+                    vscode.workspace.getConfiguration('converter').get('treatSpacesAsDelimiter');
+
+
+                    selected_text = converter.ascii_to_hex(selected_text);
+                    edit.replace(element, selected_text);
+            });
+        });
+
+    });
+    context.subscriptions.push(disposable1);
+
+    let disposable2 = vscode.commands.registerCommand('extension.hexConv', () => {
+        const editor = vscode.window.activeTextEditor;
+
+            editor.edit(function (edit) {
+                editor.selections.forEach(element => {
+                    let selected_text: string = editor.document.getText(new vscode.Range(element.start, element.end));
+
+                    if (selected_text.length == 0) {
+                        return;
+                    }
+
+                    let should_prepend_with_identifier: boolean =
+                        vscode.workspace.getConfiguration('converter').get('prependDataWithIdentifier');
+
+                    let spaces_indicate_delimiter: boolean =
+                        vscode.workspace.getConfiguration('converter').get('treatSpacesAsDelimiter');
+
+                        let selected_text_segments: string[] = selected_text.split('\n');
+                        let segmented_text: string = '';
+
+                        selected_text_segments.forEach(segment => {
+                            let segments_within_line: string[] = new Array(segment);
+
+                            segments_within_line.forEach(line_segment => {
+                                segmented_text += converter.hex_to_ascii(line_segment);
+                                segmented_text += ' ';
+                            });
+
+                            segmented_text = segmented_text.slice(0, -1);
+                            segmented_text += '\n';
+                        });
+
+                        segmented_text = segmented_text.slice(0, -1);
+
+                        edit.replace(element, segmented_text);
+                });
+            });
+    });
+    context.subscriptions.push(disposable2);
 }
